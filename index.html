@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evaluación Humana — Candidatos Colombia 2026</title>
+  <meta name="description" content="Análisis humano y comparativo de los candidatos presidenciales Abelardo De la Espriella e Iván Cepeda para las elecciones de Colombia 2026." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       DESIGN TOKENS
+    ============================================= */
+    :root, [data-theme="light"] {
+      --color-bg:              #f8f7f3;
+      --color-surface:         #faf9f6;
+      --color-surface-2:       #ffffff;
+      --color-surface-offset:  #f0ece5;
+      --color-divider:         #dcd8d0;
+      --color-border:          #ccc8c0;
+      --color-text:            #1c1a14;
+      --color-text-muted:      #6a6760;
+      --color-text-faint:      #b0ada6;
+      --color-text-inverse:    #f9f8f4;
+
+      /* Candidate accent colors */
+      --color-abelardo:        #C0392B;
+      --color-abelardo-light:  #F9DEDC;
+      --color-abelardo-muted:  #E07060;
+      --color-cepeda:          #1B7A6E;
+      --color-cepeda-light:    #D4EDE9;
+      --color-cepeda-muted:    #3AA090;
+
+      --color-primary:         #01696f;
+      --color-primary-hover:   #0c4e54;
+
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-2xl: 1.5rem;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 3px rgba(28,26,20,0.07);
+      --shadow-md: 0 4px 16px rgba(28,26,20,0.09);
+      --shadow-lg: 0 12px 40px rgba(28,26,20,0.13);
+
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+      --space-4: 1rem;    --space-5: 1.25rem; --space-6: 1.5rem;
+      --space-8: 2rem;    --space-10: 2.5rem; --space-12: 3rem;
+      --space-16: 4rem;   --space-20: 5rem;   --space-24: 6rem;
+
+      --text-xs:   clamp(0.75rem,  0.7rem + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem + 2.5vw, 3.5rem);
+      --text-hero: clamp(2.5rem,   1rem + 4vw, 4.5rem);
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'Source Sans 3', 'Helvetica Neue', sans-serif;
+
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      --content-narrow:  640px;
+      --content-default: 960px;
+      --content-wide:    1160px;
+    }
+
+    [data-theme="dark"] {
+      --color-bg:              #141310;
+      --color-surface:         #1a1916;
+      --color-surface-2:       #1f1e1b;
+      --color-surface-offset:  #252320;
+      --color-divider:         #302f2b;
+      --color-border:          #3a3835;
+      --color-text:             #d4d2ce;
+      --color-text-muted:      #7a7874;
+      --color-text-faint:      #505050;
+      --color-text-inverse:    #1c1a14;
+      --color-abelardo:        #e86060;
+      --color-abelardo-light:  #3a1f1f;
+      --color-abelardo-muted:  #c04040;
+      --color-cepeda:          #4fb8a8;
+      --color-cepeda-light:    #1a3330;
+      --color-cepeda-muted:    #30988a;
+      --color-primary:         #4f98a3;
+      --color-primary-hover:   #227f8b;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    /* =============================================
+       BASE
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; scroll-padding-top: 80px; }
+    body {
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.65;
+    }
+    img, picture, svg { display: block; max-width: 100%; height: auto; }
+    h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; }
+    p, li { max-width: 72ch; text-wrap: pretty; }
+    a { color: var(--color-primary); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--color-primary-hover); }
+    button { cursor: pointer; background: none; border: none; font: inherit; }
+    ::selection { background: rgba(1,105,111,0.18); }
+    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+    /* =============================================
+       SCROLL ANIMATIONS
+    ============================================= */
+    .fade-in { opacity: 1; }
+    @supports (animation-timeline: scroll()) {
+      .fade-in {
+        opacity: 0;
+        animation: reveal-fade linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 80%;
+      }
+    }
+    @keyframes reveal-fade { to { opacity: 1; } }
+
+    /* =============================================
+       HEADER / NAV
+    ============================================= */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in oklab, var(--color-bg) 92%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-divider);
+      padding: var(--space-3) 0;
+    }
+    .header-inner {
+      max-width: var(--content-wide);
+      margin-inline: auto;
+      padding-inline: var(--space-6);
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+    }
+    .logo {
+      display: flex; align-items: center; gap: var(--space-2);
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+    .logo svg { width: 28px; height: 28px; flex-shrink: 0; }
+    .header-nav { display: flex; align-items: center; gap: var(--space-6); }
+    .header-nav a {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+    .header-nav a:hover { color: var(--color-text); }
+    .theme-toggle {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-md);
+      color: var(--color-text-muted);
+      transition: background var(--transition), color var(--transition);
+    }
+    .theme-toggle:hover { background: var(--color-surface-offset); color: var(--color-text); }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    .hero {
+      padding: clamp(var(--space-16), 10vw, var(--space-24)) 0 clamp(var(--space-12), 8vw, var(--space-20));
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, color-mix(in oklab, var(--color-primary) 8%, transparent), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: var(--content-default);
+      margin-inline: auto;
+      padding-inline: var(--space-6);
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font-size: var(--text-xs); font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--color-primary);
+      background: var(--color-cepeda-light);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-6);
+    }
+    .hero h1 {
+      font-size: var(--text-hero);
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-6);
+    }
+    .hero h1 em { font-style: italic; color: var(--color-primary); }
+    .hero-sub {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      max-width: 56ch;
+      margin-inline: auto;
+      margin-bottom: var(--space-10);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+    .hero-meta {
+      display: flex; align-items: center; justify-content: center;
+      gap: var(--space-6);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: var(--space-1); }
+
+    /* =============================================
+       SECTION WRAPPER
+    ============================================= */
+    .section {
+      padding: clamp(var(--space-12), 8vw, var(--space-20)) 0;
+    }
+    .section-inner {
+      max-width: var(--content-wide);
+      margin-inline: auto;
+      padding-inline: var(--space-6);
+    }
+    .section-inner.narrow { max-width: var(--content-default); }
+    .section-label {
+      font-size: var(--text-xs); font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-primary);
+      margin-bottom: var(--space-3);
+    }
+    .section-title {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: var(--space-4);
+      letter-spacing: -0.01em;
+    }
+    .section-desc {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      max-width: 62ch;
+      margin-bottom: var(--space-10);
+      line-height: 1.7;
+    }
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--color-divider);
+      margin: 0;
+    }
+
+    /* =============================================
+       CANDIDATE CARDS — INTRO
+    ============================================= */
+    .candidates-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+    }
+    .candidate-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .candidate-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .candidate-card.abelardo { border-top: 4px solid var(--color-abelardo); }
+    .candidate-card.cepeda   { border-top: 4px solid var(--color-cepeda); }
+    .candidate-header {
+      display: flex; align-items: flex-start; gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+    .candidate-avatar {
+      width: 56px; height: 56px;
+      border-radius: var(--radius-full);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .candidate-avatar.ab { background: var(--color-abelardo-light); color: var(--color-abelardo); }
+    .candidate-avatar.ce { background: var(--color-cepeda-light); color: var(--color-cepeda); }
+    .candidate-name {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.2;
+    }
+    .candidate-tag {
+      display: inline-block; margin-top: var(--space-1);
+      font-size: var(--text-xs); font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+    }
+    .candidate-tag.ab { background: var(--color-abelardo-light); color: var(--color-abelardo); }
+    .candidate-tag.ce { background: var(--color-cepeda-light); color: var(--color-cepeda); }
+    .candidate-bio {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+    .candidate-score-summary {
+      display: flex; align-items: center; gap: var(--space-3);
+      margin-top: var(--space-6);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-divider);
+    }
+    .score-big {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .score-big.ab { color: var(--color-abelardo); }
+    .score-big.ce { color: var(--color-cepeda); }
+    .score-label {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      line-height: 1.4;
+    }
+
+    /* =============================================
+       INFOGRAPHIC IMAGE
+    ============================================= */
+    .infographic-wrapper {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-md);
+      margin-bottom: var(--space-12);
+    }
+    .infographic-wrapper img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-lg);
+    }
+    .infographic-caption {
+      text-align: center;
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-top: var(--space-4);
+      letter-spacing: 0.04em;
+    }
+
+    /* =============================================
+       DIMENSIONS TABLE
+    ============================================= */
+    .dimensions-table-wrap {
+      overflow-x: auto;
+      margin-bottom: var(--space-10);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+    }
+    table.dim-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+    }
+    .dim-table thead tr {
+      background: var(--color-surface-offset);
+    }
+    .dim-table th {
+      padding: var(--space-4) var(--space-5);
+      text-align: left;
+      font-weight: 600;
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .dim-table td {
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--color-divider);
+      color: var(--color-text);
+      line-height: 1.55;
+      vertical-align: middle;
+    }
+    .dim-table tr:last-child td { border-bottom: none; }
+    .dim-table tbody tr { background: var(--color-surface-2); transition: background var(--transition); }
+    .dim-table tbody tr:hover { background: var(--color-surface-offset); }
+    .score-pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: var(--text-sm);
+      width: 48px; height: 32px;
+      border-radius: var(--radius-md);
+    }
+    .score-pill.ab {
+      background: var(--color-abelardo-light);
+      color: var(--color-abelardo);
+    }
+    .score-pill.ce {
+      background: var(--color-cepeda-light);
+      color: var(--color-cepeda);
+    }
+    .score-bar-wrap { display: flex; align-items: center; gap: var(--space-3); }
+    .score-bar {
+      flex: 1; height: 6px; background: var(--color-surface-offset);
+      border-radius: var(--radius-full); overflow: hidden;
+      min-width: 60px;
+    }
+    .score-bar-fill { height: 100%; border-radius: var(--radius-full); }
+    .score-bar-fill.ab { background: var(--color-abelardo); }
+    .score-bar-fill.ce { background: var(--color-cepeda); }
+
+    /* =============================================
+       DIMENSION ANALYSIS CARDS
+    ============================================= */
+    .dim-analysis { display: flex; flex-direction: column; gap: var(--space-6); }
+    .dim-block {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-sm);
+    }
+    .dim-block-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: var(--space-4); margin-bottom: var(--space-5);
+      flex-wrap: wrap;
+    }
+    .dim-block-title {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .dim-scores { display: flex; gap: var(--space-3); }
+    .dim-score-chip {
+      display: inline-flex; align-items: center; gap: var(--space-1);
+      font-size: var(--text-xs); font-weight: 600;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+    }
+    .dim-score-chip.ab { background: var(--color-abelardo-light); color: var(--color-abelardo); }
+    .dim-score-chip.ce { background: var(--color-cepeda-light); color: var(--color-cepeda); }
+    .dim-block p {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.75;
+      max-width: 80ch;
+    }
+    .dim-block p + p { margin-top: var(--space-4); }
+    .highlight-ab {
+      background: var(--color-abelardo-light);
+      border-left: 3px solid var(--color-abelardo);
+      padding: var(--space-4) var(--space-5);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin-top: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+    }
+    .highlight-ce {
+      background: var(--color-cepeda-light);
+      border-left: 3px solid var(--color-cepeda);
+      padding: var(--space-4) var(--space-5);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin-top: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+    }
+
+    /* =============================================
+       CLOSING SECTION
+    ============================================= */
+    .closing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-top: var(--space-10);
+    }
+    .closing-card {
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+    }
+    .closing-card.ab { background: var(--color-abelardo-light); border: 1px solid color-mix(in oklab, var(--color-abelardo) 20%, transparent); }
+    .closing-card.ce { background: var(--color-cepeda-light); border: 1px solid color-mix(in oklab, var(--color-cepeda) 20%, transparent); }
+    .closing-card-name {
+      font-family: var(--font-display);
+      font-size: var(--text-lg); font-weight: 700;
+      margin-bottom: var(--space-4);
+    }
+    .closing-card.ab .closing-card-name { color: var(--color-abelardo); }
+    .closing-card.ce .closing-card-name { color: var(--color-cepeda); }
+    .closing-card p { font-size: var(--text-sm); color: var(--color-text); line-height: 1.7; }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    .site-footer {
+      padding: var(--space-10) 0;
+      border-top: 1px solid var(--color-divider);
+      text-align: center;
+    }
+    .site-footer p {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-inline: auto;
+    }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 768px) {
+      .candidates-grid { grid-template-columns: 1fr; }
+      .closing-grid { grid-template-columns: 1fr; }
+      .header-nav a:not(:last-child) { display: none; }
+      .dim-block-header { flex-direction: column; }
+      .dim-table th:nth-child(3),
+      .dim-table td:nth-child(3) { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+    }
+
+    /* =============================================
+       DARK MODE media fallback
+    ============================================= */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --color-bg: #141310; --color-surface: #1a1916; --color-surface-2: #1f1e1b;
+        --color-surface-offset: #252320; --color-divider: #302f2b; --color-border: #3a3835;
+        --color-text: #d4d2ce; --color-text-muted: #7a7874; --color-text-faint: #505050;
+        --color-abelardo: #e86060; --color-abelardo-light: #3a1f1f;
+        --color-cepeda: #4fb8a8; --color-cepeda-light: #1a3330;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+        --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo" aria-label="Inicio">
+        <!-- SVG Logo: Scales of justice / Colombia flag abstraction -->
+        <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect width="28" height="28" rx="8" fill="currentColor" opacity="0.08"/>
+          <path d="M14 5L14 23" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M7 10 L14 8 L21 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="7" cy="14" r="3" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="21" cy="14" r="3" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M10 22 L18 22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span>Colombia 2026</span>
+      </a>
+
+      <nav class="header-nav" aria-label="Navegación principal">
+        <a href="#perfiles">Perfiles</a>
+        <a href="#infografia">Infografía</a>
+        <a href="#analisis">Análisis</a>
+        <a href="#cierre">Conclusión</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Cambiar tema" title="Cambiar tema">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">🇨🇴 Elecciones Segunda Vuelta · 21 junio 2026</div>
+      <h1>Una mirada <em>humana</em><br>a los candidatos</h1>
+      <p class="hero-sub">Más allá de las propuestas y los sondeos: coherencia de vida, ética bajo presión, resiliencia y contribución real a los demás. Un análisis de carácter.</p>
+      <div class="hero-meta">
+        <span>⚖️ Evaluación 1–10</span>
+        <span>·</span>
+        <span>6 Dimensiones humanas</span>
+        <span>·</span>
+        <span>Junio 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PERFILES ===================== -->
+  <section class="section" id="perfiles">
+    <div class="section-inner">
+      <div class="section-label">Los candidatos</div>
+      <h2 class="section-title">Dos trayectorias, dos historias</h2>
+      <p class="section-desc">El carácter de un líder se forma mucho antes de llegar a la campaña electoral. Estas son las historias que construyeron a estos dos hombres.</p>
+
+      <div class="candidates-grid">
+        <!-- Abelardo -->
+        <div class="candidate-card abelardo fade-in">
+          <div class="candidate-header">
+            <div class="candidate-avatar ab">A</div>
+            <div>
+              <div class="candidate-name">Abelardo De la Espriella</div>
+              <span class="candidate-tag ab">Ultraderecha · Defensores de la Patria</span>
+            </div>
+          </div>
+          <p class="candidate-bio">
+            Nacido en Bogotá (1978), creció en Montería. Fundó su firma de abogados a los 24 años y construyó su reputación en el litigio penal mediático. Representó a víctimas emblemáticas como Natalia Ponce de León y Rosa Elvira Cely, pero también a clientes como Álex Saab, los primos Nule y parapolíticos. Su ascenso político se apoyó en las redes sociales y un discurso de "mano dura" anticorrupción. Reunió más de 4,6 millones de firmas ciudadanas para inscribirse como candidato independiente, ganando la primera vuelta presidencial.
+          </p>
+          <div class="candidate-score-summary">
+            <div class="score-big ab">4.8</div>
+            <div class="score-label">Promedio<br>de 6 dimensiones<br>/ 10</div>
+          </div>
+        </div>
+
+        <!-- Cepeda -->
+        <div class="candidate-card cepeda fade-in">
+          <div class="candidate-header">
+            <div class="candidate-avatar ce">I</div>
+            <div>
+              <div class="candidate-name">Iván Cepeda Castro</div>
+              <span class="candidate-tag ce">Izquierda · Pacto Histórico</span>
+            </div>
+          </div>
+          <p class="candidate-bio">
+            Nacido en Bogotá (1962), vivió exiliado en Checoslovaquia y Cuba desde los 3 años. Regresó a Colombia, estudió filosofía en Bulgaria y en 1994 presenció el asesinato de su padre, el senador Manuel Cepeda, perpetrado por agentes del Estado y paramilitares. Fundó el MOVICE, fue facilitador del proceso de paz con las FARC y el ELN, y durante 13 años enfrentó judicialmente a Álvaro Uribe, quien fue condenado en 2025 por soborno de testigos. Su candidatura presidencial es respaldada por el Pacto Histórico.
+          </p>
+          <div class="candidate-score-summary">
+            <div class="score-big ce">7.5</div>
+            <div class="score-label">Promedio<br>de 6 dimensiones<br>/ 10</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ===================== INFOGRAFÍA ===================== -->
+  <section class="section" id="infografia">
+    <div class="section-inner">
+      <div class="section-label">Visualización comparativa</div>
+      <h2 class="section-title">Las 6 dimensiones en cifras</h2>
+      <p class="section-desc">Cada dimensión fue evaluada del 1 al 10 a partir de hechos documentados, decisiones públicas y trayectorias verificables — no encuestas de opinión.</p>
+
+      <div class="infographic-wrapper fade-in">
+        <img
+          src="./assets/infografia.png"
+          alt="Gráfico comparativo de Abelardo De la Espriella vs Iván Cepeda en 6 dimensiones: coherencia, resiliencia, contribución, ética, valentía y tolerancia"
+          width="1050"
+          height="500"
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="infographic-caption">La línea vertical sólida representa el promedio del candidato · La línea punteada gris es el punto medio (5/10)</p>
+      </div>
+
+      <!-- Tabla resumen -->
+      <div class="dimensions-table-wrap fade-in">
+        <table class="dim-table" role="table" aria-label="Tabla de puntuaciones por dimensión">
+          <thead>
+            <tr>
+              <th scope="col">Dimensión</th>
+              <th scope="col">Criterio evaluado</th>
+              <th scope="col" style="min-width:200px">Abelardo · 4.8 prom.</th>
+              <th scope="col" style="min-width:200px">Cepeda · 7.5 prom.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Coherencia vida–discurso</strong></td>
+              <td>¿Lo que predica coincide con cómo ha vivido?</td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ab">4/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ab" style="width:40%"></div></div>
+                </div>
+              </td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ce">7/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ce" style="width:70%"></div></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Resiliencia personal</strong></td>
+              <td>¿Cómo enfrentó las dificultades de su vida?</td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ab">6/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ab" style="width:60%"></div></div>
+                </div>
+              </td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ce">9/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ce" style="width:90%"></div></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Contribución a otros</strong></td>
+              <td>¿Ha ayudado efectivamente a personas vulnerables?</td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ab">6/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ab" style="width:60%"></div></div>
+                </div>
+              </td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ce">8/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ce" style="width:80%"></div></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Ética bajo presión</strong></td>
+              <td>¿Sus decisiones difíciles revelan integridad o conveniencia?</td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ab">4/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ab" style="width:40%"></div></div>
+                </div>
+              </td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ce">7/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ce" style="width:70%"></div></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Valentía real</strong></td>
+              <td>¿Ha arriesgado algo real por sus convicciones?</td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ab">6/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ab" style="width:60%"></div></div>
+                </div>
+              </td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ce">8/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ce" style="width:80%"></div></div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Tolerancia y apertura</strong></td>
+              <td>¿Escucha y debate, o silencia al que piensa distinto?</td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ab">3/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ab" style="width:30%"></div></div>
+                </div>
+              </td>
+              <td>
+                <div class="score-bar-wrap">
+                  <span class="score-pill ce">6/10</span>
+                  <div class="score-bar"><div class="score-bar-fill ce" style="width:60%"></div></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ===================== ANÁLISIS ===================== -->
+  <section class="section" id="analisis">
+    <div class="section-inner narrow">
+      <div class="section-label">Análisis por dimensión</div>
+      <h2 class="section-title">El carácter se forma antes de la campaña</h2>
+      <p class="section-desc">El verdadero carácter de una persona se revela cuando tiene algo que perder. Aquí examinamos cada dimensión con hechos documentados.</p>
+
+      <div class="dim-analysis">
+
+        <!-- 1. Coherencia -->
+        <div class="dim-block fade-in">
+          <div class="dim-block-header">
+            <div class="dim-block-title">Coherencia vida–discurso</div>
+            <div class="dim-scores">
+              <span class="dim-score-chip ab">Abelardo 4/10</span>
+              <span class="dim-score-chip ce">Cepeda 7/10</span>
+            </div>
+          </div>
+          <p>Esta es la dimensión más reveladora. <strong>Cepeda</strong> construyó su carrera pública alrededor de la lucha contra la impunidad y la defensa de víctimas, y sus decisiones vitales lo confirman: regresó del exilio para enfrentar el riesgo, y su confrontación con Uribe duró 13 años hasta la condena histórica por soborno. No cambió de posición cuando era inconveniente.</p>
+          <p><strong>Abelardo</strong> presenta la tensión más evidente: prometió combatir a criminales y corruptos, pero construyó parte de su fortuna defendiéndolos. Representó a Álex Saab, a los primos Nule y a parapolíticos, no como defensor de oficio sino por elección libre y lucrativa. Esa brecha entre el discurso de "mano dura" y su trayectoria como abogado de los más poderosos corruptos del país es la gran incoherencia de su candidatura.</p>
+          <div class="highlight-ab">⚠️ <strong>Abelardo:</strong> La FLIP documentó 109 denuncias por calumnia e injuria entre 2008–2019, muchas luego retiradas, lo que sugiere uso del sistema judicial para silenciar críticos más que para obtener justicia.</div>
+          <div class="highlight-ce">✓ <strong>Cepeda:</strong> La Corte Suprema cerró la investigación en su contra sin pruebas en 2018. Mantuvo su posición durante 13 años sin retractarse ni negociar silencio.</div>
+        </div>
+
+        <!-- 2. Resiliencia -->
+        <div class="dim-block fade-in">
+          <div class="dim-block-header">
+            <div class="dim-block-title">Resiliencia personal</div>
+            <div class="dim-scores">
+              <span class="dim-score-chip ab">Abelardo 6/10</span>
+              <span class="dim-score-chip ce">Cepeda 9/10</span>
+            </div>
+          </div>
+          <p><strong>Cepeda</strong> enfrentó el genocidio de su movimiento político de niño, el asesinato de su padre de adulto, dos exilios, amenazas constantes y un proceso judicial de más de una década en su contra. Cada vez que tuvo que elegir entre seguridad y convicción, eligió convicción. Vivió en Praga, luego en La Habana (cuando los soviéticos invadieron Checoslovaquia), y regresó a Colombia a sabiendas del riesgo que implicaba. Eso es resiliencia forjada en el fuego real.</p>
+          <p><strong>Abelardo</strong> no pasó por traumas existenciales equiparables, pero sí construyó una firma de abogados desde cero, trabajó en casos de altísima presión pública y levantó más de 4,6 millones de firmas como candidato independiente rechazando las consultas interpartidistas. Su reto fue más de ambición y construcción que de supervivencia. Construirse a sí mismo tiene mérito, pero no es lo mismo que enfrentar amenazas de muerte o la pérdida violenta de un ser querido.</p>
+        </div>
+
+        <!-- 3. Contribución -->
+        <div class="dim-block fade-in">
+          <div class="dim-block-header">
+            <div class="dim-block-title">Contribución a otros</div>
+            <div class="dim-scores">
+              <span class="dim-score-chip ab">Abelardo 6/10</span>
+              <span class="dim-score-chip ce">Cepeda 8/10</span>
+            </div>
+          </div>
+          <p><strong>Cepeda</strong> dedicó décadas, antes de entrar al Congreso, a trabajar con organizaciones de víctimas sin cargo público ni salario político. Fundó el MOVICE en 2003, fue facilitador en los procesos de paz con las FARC y el ELN, y su trabajo en derechos humanos le mereció el Premio Roger Baldwin de Human Rights First en 2007. Desde el Senado, sus debates destaparon parapolíticos y fueron reconocidos como referentes.</p>
+          <p><strong>Abelardo</strong> tiene una cara real de contribución: los casos de Rosa Elvira Cely y Natalia Ponce de León son logros jurídicos que transformaron la legislación colombiana sobre feminicidio y ataques con ácido. Sin embargo, hay una disputa activa sobre el caso Cely — la familia negó que él haya sido el motor de la ley, y se reportó que la firma habría cobrado honorarios de la indemnización. Sus mayores ingresos vinieron de defender a los poderosos, no a las víctimas.</p>
+        </div>
+
+        <!-- 4. Ética -->
+        <div class="dim-block fade-in">
+          <div class="dim-block-header">
+            <div class="dim-block-title">Ética bajo presión</div>
+            <div class="dim-scores">
+              <span class="dim-score-chip ab">Abelardo 4/10</span>
+              <span class="dim-score-chip ce">Cepeda 7/10</span>
+            </div>
+          </div>
+          <p>Cuando la columnista Ana Bejarano publicó un artículo sobre sus vínculos con Álex Saab, <strong>Abelardo</strong> no respondió con argumentos públicos: la demandó judicialmente. La FLIP señaló este caso como parte de un patrón de "acoso judicial" contra periodistas que investigaban su pasado. Usar el aparato judicial para intimidar a quienes te critican, mientras predicas libertad e institucionalidad, es una señal de alerta ética seria.</p>
+          <p><strong>Cepeda</strong> actuó durante 13 años bajo presión extrema en el caso Uribe, siendo acusado públicamente de manipular testigos. Resistió sin retractarse, sin negociar silencio y sin atacar a jueces. Sus críticos legítimos señalan sus posiciones sobre algunos gobiernos latinoamericanos cuestionados, y el hecho de que su tío Saúl Castro fue condenado por corrupción. Pero en los momentos decisivos de su carrera, su comportamiento fue consistente.</p>
+        </div>
+
+        <!-- 5. Valentía -->
+        <div class="dim-block fade-in">
+          <div class="dim-block-header">
+            <div class="dim-block-title">Valentía real</div>
+            <div class="dim-scores">
+              <span class="dim-score-chip ab">Abelardo 6/10</span>
+              <span class="dim-score-chip ce">Cepeda 8/10</span>
+            </div>
+          </div>
+          <p><strong>Cepeda</strong> arriesgó literalmente la vida: dos exilios, amenazas documentadas, el asesinato de su padre en un contexto de exterminio político. Seguir en Colombia, volver del exilio, enfrentarse en juicio a uno de los hombres más poderosos del país durante 13 años — eso es valentía real con costos personales reales.</p>
+          <p><strong>Abelardo</strong> tomó la decisión políticamente valiente de no entrar a consultas interpartidistas y apostar a la presidencia con firmas ciudadanas, lo cual implica riesgo estratégico real. Pero sus posiciones mediáticas y su perfil como "outsider" le han dado más de lo que le han quitado. La valentía de Abelardo es más retórica y estratégica; la de Cepeda fue existencial.</p>
+        </div>
+
+        <!-- 6. Tolerancia -->
+        <div class="dim-block fade-in">
+          <div class="dim-block-header">
+            <div class="dim-block-title">Tolerancia y apertura</div>
+            <div class="dim-scores">
+              <span class="dim-score-chip ab">Abelardo 3/10</span>
+              <span class="dim-score-chip ce">Cepeda 6/10</span>
+            </div>
+          </div>
+          <p>Ninguno de los dos destaca en esta dimensión, pero por razones distintas. <strong>Abelardo</strong> ha declarado abiertamente que rechaza debatir con candidatos cercanos al petrismo, y ha demandado o amenazado con demandar a múltiples periodistas que lo investigan. Eso no es tolerancia; es intolerancia con corbata legal.</p>
+          <p><strong>Cepeda</strong> tiene un discurso de diálogo y paz, pero su campaña ha tenido pocos debates y escasas entrevistas abiertas. No es conocido por cambiar sus posiciones cuando recibe críticas. Su cercanía con el gobierno Petro y el apoyo al proceso de "Paz Total" le han generado cuestionamientos que suele responder desde la ideología más que desde la evidencia empírica.</p>
+        </div>
+
+      </div><!-- /dim-analysis -->
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ===================== CIERRE ===================== -->
+  <section class="section" id="cierre">
+    <div class="section-inner narrow">
+      <div class="section-label">Lectura final</div>
+      <h2 class="section-title">Lo que las historias revelan</h2>
+      <p class="section-desc">Estas puntuaciones no significan que uno sea una persona perfecta ni el otro un villano. Significan que, cuando lees sus vidas completas, aparecen patrones.</p>
+
+      <div class="closing-grid">
+        <div class="closing-card ab fade-in">
+          <div class="closing-card-name">Abelardo De la Espriella · 4.8/10</div>
+          <p>Es un hombre construido en el litigio mediático, talentoso para comunicar y genuinamente comprometido en algunos casos de víctimas. Pero hay una fractura central: su discurso de autoridad y anticorrupción no puede separarse de una carrera donde los más grandes corruptos del país fueron sus clientes más rentables. Que hoy quiera ser el presidente que "los erradique" es una narrativa que la historia de su propio ejercicio profesional complica profundamente.</p>
+        </div>
+        <div class="closing-card ce fade-in">
+          <div class="closing-card-name">Iván Cepeda Castro · 7.5/10</div>
+          <p>Es un hombre cuya vida entera fue moldeada por la pérdida y la persecución, y que eligió enfrentarlas desde la verdad y la institucionalidad. Su trayectoria es, en términos de coherencia personal, más difícil de cuestionar. Sus críticos legítimos señalan que su visión del rol del Estado en la economía replica esquemas que en otros países latinoamericanos han profundizado la pobreza en lugar de reducirla.</p>
+        </div>
+      </div>
+
+      <div class="dim-block fade-in" style="margin-top: var(--space-8); border-color: var(--color-primary); border-top: 3px solid var(--color-primary);">
+        <p style="font-size: var(--text-lg); font-family: var(--font-display); font-style: italic; color: var(--color-text); line-height: 1.6;">
+          "El carácter se forma en las decisiones que nadie ve, en los momentos en que el costo de la integridad era más alto que el de la conveniencia. Y en esa dimensión, las trayectorias hablan por sí solas."
+        </p>
+        <p style="margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-text-faint);">— Análisis basado en fuentes verificadas: BBC, El País, Caracol, CNN en Español, La Silla Vacía, FLIP, Infobae · Junio 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="section-inner">
+      <p>Esta evaluación es de carácter informativo y busca promover el análisis crítico ciudadano. No representa una recomendación de voto.</p>
+      <p style="margin-top: var(--space-2);">Colombia 2026 · Análisis humano de candidatos · Elaborado con fuentes de prensa verificadas</p>
+    </div>
+  </footer>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script>
+    // Theme toggle
+    (function(){
+      const t = document.querySelector('[data-theme-toggle]');
+      const r = document.documentElement;
+      let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+      r.setAttribute('data-theme', d);
+      const moonIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      const sunIcon  = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+      if (t) {
+        t.innerHTML = d === 'dark' ? sunIcon : moonIcon;
+        t.addEventListener('click', () => {
+          d = d === 'dark' ? 'light' : 'dark';
+          r.setAttribute('data-theme', d);
+          t.innerHTML = d === 'dark' ? sunIcon : moonIcon;
+          t.setAttribute('aria-label', 'Cambiar a modo ' + (d === 'dark' ? 'claro' : 'oscuro'));
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
